@@ -1,0 +1,2 @@
+rootProject.name='Imooc_res'
+include ':app'
