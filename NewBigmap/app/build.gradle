@@ -2,8 +2,8 @@ apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.3"
+    compileSdkVersion rootProject.ext.compileSdkVersion
+    buildToolsVersion '29.0.3'
 
 
     //指定jdk版本
@@ -13,11 +13,10 @@ android {
     }
 
 
-
     defaultConfig {
         applicationId "com.newbigmap"
-        minSdkVersion 19
-        targetSdkVersion 29
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -39,13 +38,15 @@ android {
         }
 
     }
-
+}
     dependencies {
         implementation fileTree(dir: 'libs', include: ['*.jar'])
 
         implementation 'androidx.appcompat:appcompat:1.1.0'
         implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
         testImplementation 'junit:junit:4.12'
+
+
         androidTestImplementation 'androidx.test.ext:junit:1.1.1'
         androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
         //阿里巴巴路由
@@ -56,10 +57,31 @@ android {
         annotationProcessor 'com.jakewharton:butterknife-compiler:10.2.1'
         implementation "com.squareup.retrofit2:retrofit:2.8.2"
 
-    }
+
+        // Retrofit
+        implementation "com.squareup.retrofit2:retrofit:$rootProject.retrofitVersion"
+        implementation "com.squareup.retrofit2:converter-gson:$rootProject.retrofitVersion"
+        implementation "com.squareup.retrofit2:adapter-rxjava2:$rootProject.retrofitVersion"
+        implementation "com.squareup.okhttp3:logging-interceptor:$rootProject.okhttploggingVersion"
+        implementation "com.squareup.okhttp3:okhttp:$rootProject.okhttpVersion"
+
+
+    // RxJava
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$rootProject.rxbindingVersion"
+
+
+    // Glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    implementation "com.github.bumptech.glide:okhttp-integration:$rootProject.glideokhttpVersion"
+    implementation "jp.wasabeef:glide-transformations:$rootProject.glideTransformationVersion"
+    //fragmentation
+    implementation "me.yokeyword:fragmentation:$rootProject.fragmentationVersion"
+
+    //Logger
+    implementation "com.orhanobut:logger:$rootProject.loggerVersion"
+
+
 }
 
-dependencies {
-    implementation 'androidx.appcompat:appcompat:+'
-    implementation 'androidx.constraintlayout:constraintlayout:+'
-}
